@@ -1,0 +1,2 @@
+I'm just hanging out here, being not a JPG.
+find_jpgs_in_tree() should ignore me.
