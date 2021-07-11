@@ -90,13 +90,7 @@ def calculate_number_of_source_images(width, height):
 
 def main():
     start = time.perf_counter()
-    # Create the window that will define each square in the image.
-    window = (
-        0,
-        0,
-        settings.SOURCE_IMAGE_WIDTH_HEIGHT,
-        settings.SOURCE_IMAGE_WIDTH_HEIGHT,
-    )
+    window = create_window()
 
     # Open target image i.e. the "big picture" that will be recreated in small source images.
     input_img = Image.open(FILEPATHS["test_image"])
@@ -140,6 +134,17 @@ def main():
     elapsed = end - start
     print(f"finished in {elapsed} seconds")
     input_img.show()
+
+
+def create_window():
+    # Create the window that will define each square in the image.
+    window = (
+        0,
+        0,
+        settings.SOURCE_IMAGE_WIDTH_HEIGHT,
+        settings.SOURCE_IMAGE_WIDTH_HEIGHT,
+    )
+    return window
 
 
 if __name__ == "__main__":
