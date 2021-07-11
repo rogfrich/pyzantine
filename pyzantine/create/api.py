@@ -90,7 +90,7 @@ def calculate_number_of_source_images(width, height):
 
 def main():
     start = time.perf_counter()
-    window = create_window()
+    window = initialise_window()
 
     # Open target image i.e. the "big picture" that will be recreated in small source images.
     input_img = Image.open(FILEPATHS["test_image"])
@@ -136,7 +136,7 @@ def main():
     input_img.show()
 
 
-def create_window():
+def initialise_window():
     # Create the window that will define each square in the image.
     window = (
         0,
