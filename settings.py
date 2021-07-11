@@ -9,6 +9,9 @@ FILEPATHS = {
     "output_folder_processed_sources": Path(
         "/Volumes/LaCie/Images/mosaic_source_images"
     ),
+    "source_images": Path(
+        "/Volumes/LaCie/Images/mosaic_source_images"
+    ),
 }
 
 # Image sizing. Source images are square, measurement is px
