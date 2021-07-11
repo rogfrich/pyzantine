@@ -2,7 +2,9 @@
 Create a mosaic image from a target image and source images.
 The sequence is:
 1. Load a target image. This is the "big picture" which will be made up of smaller source images.
-2. Divide the target image into squares with an edge of n pixels where n is the edge-length of the source images. Iterate over these squares, calculating the average RGB value, selecting the source image with the closest RGB value and pasting that source image into the target image square.
+2. Divide the target image into squares with an edge of n pixels where n is the edge-length of the source images.
+3. Iterate over these squares, calculating the average RGB value, selecting the source image with the closest RGB value
+and pasting that source image into the target image square.
 """
 
 import math, json
@@ -14,7 +16,8 @@ from settings import FILEPATHS
 
 def calculate_euclidean_distance(square, source_image):
     """
-    Calculate the difference in average RGB values between two images. See https://en.wikipedia.org/wiki/Color_difference#sRGB
+    Calculate the difference in average RGB values between two images.
+    See https://en.wikipedia.org/wiki/Color_difference#sRGB
     """
     per_channel_differences = []
     for channel in zip(square, source_image):
@@ -87,14 +90,21 @@ def calculate_number_of_source_images(width, height):
 
 def main():
     # Create top layer i.e. the picture that we will paste onto the base layer
-    window = (0, 0, settings.SOURCE_IMAGE_WIDTH_HEIGHT, settings.SOURCE_IMAGE_WIDTH_HEIGHT)
+    window = (
+        0,
+        0,
+        settings.SOURCE_IMAGE_WIDTH_HEIGHT,
+        settings.SOURCE_IMAGE_WIDTH_HEIGHT,
+    )
 
     input_img = Image.open(FILEPATHS["test_image"])
 
     # Calculate how many source images we need to cover the input image
     input_img_width = input_img.size[0]
     input_img_height = input_img.size[1]
-    source_images_width, source_images_height = calculate_number_of_source_images(input_img_width, input_img_height)
+    source_images_width, source_images_height = calculate_number_of_source_images(
+        input_img_width, input_img_height
+    )
 
     # Uncomment the line below if the image needs to be rotated
     # input_img = input_img.transpose(Image.ROTATE_90)
@@ -110,7 +120,12 @@ def main():
 
             # paste source image over square
             this_source_image = Image.open(Path(closest_image))
-            crop_area = (0, 0, settings.SOURCE_IMAGE_WIDTH_HEIGHT, settings.SOURCE_IMAGE_WIDTH_HEIGHT)
+            crop_area = (
+                0,
+                0,
+                settings.SOURCE_IMAGE_WIDTH_HEIGHT,
+                settings.SOURCE_IMAGE_WIDTH_HEIGHT,
+            )
             paste_region = this_source_image.crop(crop_area)
 
             input_img.paste(paste_region, window)
@@ -122,5 +137,5 @@ def main():
     input_img.show()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
