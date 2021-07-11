@@ -7,7 +7,7 @@ The sequence is:
 and pasting that source image into the target image square.
 """
 
-import math, json
+import math, json, time
 from pathlib import Path
 from PIL import Image
 import settings
@@ -89,6 +89,7 @@ def calculate_number_of_source_images(width, height):
 
 
 def main():
+    start = time.perf_counter()
     # Create top layer i.e. the picture that we will paste onto the base layer
     window = (
         0,
@@ -134,6 +135,9 @@ def main():
             qty_analysed += 1
         window = move_to_start_of_next_row(window, settings.SOURCE_IMAGE_WIDTH_HEIGHT)
 
+    end = time.perf_counter()
+    elapsed = end - start
+    print(f"finished in {elapsed} seconds")
     input_img.show()
 
 
