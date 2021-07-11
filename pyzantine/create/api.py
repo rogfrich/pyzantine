@@ -24,7 +24,7 @@ def calculate_euclidean_distance(square, source_image):
         channel_difference = int(channel[1]) - int(channel[0])
         per_channel_differences.append(channel_difference ** 2)
 
-    return sum(per_channel_differences) ** 0.5
+    return sum(per_channel_differences)
 
 
 def find_nearest_euclidean_distance(square):
