@@ -2,9 +2,7 @@
 Create a mosaic image from a target image and source images.
 The sequence is:
 1. Load a target image. This is the "big picture" which will be made up of smaller source images.
-2. Create a blank output image that has the same dimensions as the target image.
-3. Divide the target image into squares with an edge of n pixels where n is the edge-length of the source images. Iterate over these squares, calculating the average RGB value, selecting the source image with the closest RGB value and pasting that source image into the corresponding square in the output image.
-4. Save the output image.
+2. Divide the target image into squares with an edge of n pixels where n is the edge-length of the source images. Iterate over these squares, calculating the average RGB value, selecting the source image with the closest RGB value and pasting that source image into the target image square.
 """
 
 import math, json
