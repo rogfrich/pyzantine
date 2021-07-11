@@ -11,6 +11,7 @@ import math, json
 from pathlib import Path
 from PIL import Image
 import settings
+from settings import FILEPATHS
 
 
 def calculate_euclidean_distance(square, source_image):
@@ -30,7 +31,7 @@ def find_nearest_euclidean_distance(square):
     Work through the images listed in source_images.json. Return the path to the source image
     with the smallest Euclidean distance to the supplied square of the input image
     """
-    with open('source_images.json') as fin:
+    with open(FILEPATHS["source_images_data"]) as fin:
         source_images = json.loads(fin.read())
 
     nearest_match = None
@@ -90,7 +91,7 @@ def main():
     # Create top layer i.e. the picture that we will paste onto the base layer
     window = (0, 0, settings.SOURCE_IMAGE_WIDTH_HEIGHT, settings.SOURCE_IMAGE_WIDTH_HEIGHT)
 
-    input_img = Image.open(settings.TEST_INPUT_IMG)
+    input_img = Image.open(FILEPATHS["test_image"])
 
     # Calculate how many source images we need to cover the input image
     input_img_width = input_img.size[0]

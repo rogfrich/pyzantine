@@ -12,7 +12,8 @@ FILEPATHS = {
     "source_images": Path(
         "/Volumes/LaCie/Images/mosaic_source_images"
     ),
-    "test_image": Path("/Volumes/LaCie/Images/mosaic_test_images/IMG_0287.jpg")
+    "test_image": Path("/Volumes/LaCie/Images/mosaic_test_images/IMG_0287.jpg"),
+    "source_images_data": Path("/Volumes/LaCie/Images/mosaic_source_images/source_images.json"),
 }
 
 # Image sizing. Source images are square, measurement is px
