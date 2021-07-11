@@ -90,7 +90,7 @@ def calculate_number_of_source_images(width, height):
 
 def main():
     start = time.perf_counter()
-    # Create top layer i.e. the picture that we will paste onto the base layer
+    # Create the window that will define each square in the image.
     window = (
         0,
         0,
@@ -98,9 +98,10 @@ def main():
         settings.SOURCE_IMAGE_WIDTH_HEIGHT,
     )
 
+    # Open target image i.e. the "big picture" that will be recreated in small source images.
     input_img = Image.open(FILEPATHS["test_image"])
 
-    # Calculate how many source images we need to cover the input image
+    # Calculate how many source images we need to cover the target image
     input_img_width = input_img.size[0]
     input_img_height = input_img.size[1]
     source_images_width, source_images_height = calculate_number_of_source_images(
