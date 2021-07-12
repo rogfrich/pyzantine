@@ -91,10 +91,11 @@ def calculate_number_of_source_images(img: Image.Image) -> tuple:
     img_width = img.size[0]
     img_height = img.size[1]
     source_images_width = int(math.ceil(img_width / settings.SOURCE_IMAGE_WIDTH_HEIGHT))
-    source_images_height = int(math.ceil(img_height / settings.SOURCE_IMAGE_WIDTH_HEIGHT))
+    source_images_height = int(
+        math.ceil(img_height / settings.SOURCE_IMAGE_WIDTH_HEIGHT)
+    )
 
     return source_images_width, source_images_height
-
 
 
 def main():
@@ -105,7 +106,9 @@ def main():
     input_img = read_file(FILEPATHS["test_image"])
 
     # Calculate how many source images we need to cover the target image
-    source_images_width, source_images_height = calculate_number_of_source_images(input_img)
+    source_images_width, source_images_height = calculate_number_of_source_images(
+        input_img
+    )
 
     # Uncomment the line below if the image needs to be rotated
     # input_img = input_img.transpose(Image.ROTATE_90)
