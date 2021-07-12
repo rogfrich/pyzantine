@@ -82,11 +82,19 @@ def calculate_average_colour(region):
     return (red, green, blue)
 
 
-def calculate_number_of_source_images(width, height):
-    return (
-        int(math.ceil(width / settings.SOURCE_IMAGE_WIDTH_HEIGHT)),
-        int(math.ceil(height / settings.SOURCE_IMAGE_WIDTH_HEIGHT)),
-    )
+def calculate_number_of_source_images(img: Image.Image) -> tuple:
+    """
+    Works out how many source images are needed to cover the target image. Takes the size of the
+    source images from settings.py and gets the size of the target image directly from the
+    image object properties.
+    """
+    img_width = img.size[0]
+    img_height = img.size[1]
+    source_images_width = int(math.ceil(img_width / settings.SOURCE_IMAGE_WIDTH_HEIGHT))
+    source_images_height = int(math.ceil(img_height / settings.SOURCE_IMAGE_WIDTH_HEIGHT))
+
+    return source_images_width, source_images_height
+
 
 
 def main():
@@ -97,11 +105,7 @@ def main():
     input_img = read_file(FILEPATHS["test_image"])
 
     # Calculate how many source images we need to cover the target image
-    input_img_width = input_img.size[0]
-    input_img_height = input_img.size[1]
-    source_images_width, source_images_height = calculate_number_of_source_images(
-        input_img_width, input_img_height
-    )
+    source_images_width, source_images_height = calculate_number_of_source_images(input_img)
 
     # Uncomment the line below if the image needs to be rotated
     # input_img = input_img.transpose(Image.ROTATE_90)
