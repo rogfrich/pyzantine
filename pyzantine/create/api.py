@@ -12,6 +12,7 @@ from pathlib import Path
 from PIL import Image
 import settings
 from settings import FILEPATHS
+from pyzantine.file_ops import read_file
 
 
 def calculate_euclidean_distance(square, source_image):
@@ -93,7 +94,7 @@ def main():
     window = initialise_window()
 
     # Open target image i.e. the "big picture" that will be recreated in small source images.
-    input_img = Image.open(FILEPATHS["test_image"])
+    input_img = read_file(FILEPATHS["test_image"])
 
     # Calculate how many source images we need to cover the target image
     input_img_width = input_img.size[0]
