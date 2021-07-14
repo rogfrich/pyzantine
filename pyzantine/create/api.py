@@ -113,7 +113,9 @@ def main():
     # Uncomment the line below if the image needs to be rotated
     # input_img = input_img.transpose(Image.ROTATE_90)
 
-    overwrite_target_squares_with_source_images(input_img, source_images_height, source_images_width, window)
+    overwrite_target_squares_with_source_images(
+        input_img, source_images_height, source_images_width, window
+    )
 
     end = time.perf_counter()
     elapsed = end - start
@@ -121,7 +123,9 @@ def main():
     input_img.show()
 
 
-def overwrite_target_squares_with_source_images(input_img: Image.Image, source_images_height: int, source_images_width: int, window) -> Image.Image:
+def overwrite_target_squares_with_source_images(
+    input_img: Image.Image, source_images_height: int, source_images_width: int, window
+) -> Image.Image:
     qty_analysed = 1
     for i in range(source_images_height):  #
         for j in range(source_images_width):
@@ -133,7 +137,9 @@ def overwrite_target_squares_with_source_images(input_img: Image.Image, source_i
 
             # paste source image over square
             this_source_image = Image.open(Path(closest_image))
-            crop_area = initialise_window() # Note that the source image and the sliding window are the same size, so it makes sense to reuse the window initialisation code here
+
+            # Source image and window are the same size, so let's reuse the window initialisation code.
+            crop_area = initialise_window()
             paste_region = this_source_image.crop(crop_area)
 
             input_img.paste(paste_region, window)
