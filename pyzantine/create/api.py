@@ -133,7 +133,7 @@ def overwrite_target_squares_with_source_images(input_img: Image.Image, source_i
 
             # paste source image over square
             this_source_image = Image.open(Path(closest_image))
-            crop_area = initialise_window()
+            crop_area = initialise_window() # Note that the source image and the sliding window are the same size, so it makes sense to reuse the window initialisation code here
             paste_region = this_source_image.crop(crop_area)
 
             input_img.paste(paste_region, window)
