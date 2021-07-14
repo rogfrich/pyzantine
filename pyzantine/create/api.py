@@ -113,6 +113,15 @@ def main():
     # Uncomment the line below if the image needs to be rotated
     # input_img = input_img.transpose(Image.ROTATE_90)
 
+    overwrite_target_squares_with_source_images(input_img, source_images_height, source_images_width, window)
+
+    end = time.perf_counter()
+    elapsed = end - start
+    print(f"finished in {elapsed} seconds")
+    input_img.show()
+
+
+def overwrite_target_squares_with_source_images(input_img: Image.Image, source_images_height: int, source_images_width: int, window) -> Image.Image:
     qty_analysed = 1
     for i in range(source_images_height):  #
         for j in range(source_images_width):
@@ -138,10 +147,7 @@ def main():
             qty_analysed += 1
         window = move_to_start_of_next_row(window, settings.SOURCE_IMAGE_WIDTH_HEIGHT)
 
-    end = time.perf_counter()
-    elapsed = end - start
-    print(f"finished in {elapsed} seconds")
-    input_img.show()
+    return input_img
 
 
 def initialise_window():
