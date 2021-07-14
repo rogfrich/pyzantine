@@ -133,12 +133,7 @@ def overwrite_target_squares_with_source_images(input_img: Image.Image, source_i
 
             # paste source image over square
             this_source_image = Image.open(Path(closest_image))
-            crop_area = (
-                0,
-                0,
-                settings.SOURCE_IMAGE_WIDTH_HEIGHT,
-                settings.SOURCE_IMAGE_WIDTH_HEIGHT,
-            )
+            crop_area = initialise_window()
             paste_region = this_source_image.crop(crop_area)
 
             input_img.paste(paste_region, window)
